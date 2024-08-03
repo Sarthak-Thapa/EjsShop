@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <%- include('partials/nav') %> <!-- Include the navigation partial -->
+    <h1>Profile</h1>
+    <h3>UserName: <%= user.name%></h3>
+    <h3>Email: <%= user.email%></h3>
+    <h3>PhoneNo: <%= user.phoneNo%></h3>
+    <h3>user ID: <%= user._id%></h3>
+</body>
+</html>

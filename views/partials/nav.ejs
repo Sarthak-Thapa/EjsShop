@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+    <header class="bg-slate-800 text-white">
+        <nav class="flex items-center justify-between px-8 h-16 lg:gap-8">
+            <a href="/" class="text-2xl font-bold whitespace-nowrap">HamroGadget</a>
+            <div class="absolute top-16 max-lg:bg-slate-800 left-0
+             w-full flex flex-col text-lg gap-6 items-center font-medium py-2
+             lg:static lg:flex-row lg:justify-between">
+                <ul class="flex flex-col items-center gap-6 lg:flex-row lg:gap-8">
+                    <li class="hover:text-blue-600"><a href="/product">Products</a></li>
+                    <li class="hover:text-blue-600"><a href="/product/myproducts">MyProducts</a></li>
+                    <li class="hover:text-blue-600"><a href="/user/profile">Profile</a></li>
+                    <li class="hover:text-blue-600"><a href="/product/form">AddProduct</a></li>
+                    <!-- <li class="hover:text-blue-600">About</li>
+                    <li class="hover:text-blue-600 whitespace-nowrap">Contact</li>
+                    <li class="hover:text-blue-600 whitespace-nowrap">Workout</li>
+                    <li class="hover:text-blue-600">Help</li> -->
+                </ul>
+                <div class="flex flex-col gap-6 lg:flex lg:flex-row lg:gap-8">
+                    <a class="mt-2" href="/user/login">Login</a>
+                    <a class="bg-red-600 p-2 rounded-md" href="/user/signup">SignUp</a>
+                </div>
+            </div>
+            <div class="lg:hidden">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+</body>
+</html>
