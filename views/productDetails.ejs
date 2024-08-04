@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-800">
+    <%- include('partials/nav') %>
+    <div class="flex items-center justify-center h-screen">
+        <div class="flex flex-col md:flex-row w-full max-w-3xl bg-white shadow-lg border border-gray-200 rounded-lg overflow-hidden">
+            <!-- Image Section -->
+            <div class="flex flex-col items-center bg-slate-800 w-full md:w-1/2 p-4">
+                <img src="<%= product.images %>" class="w-full h-auto object-cover mb-4 rounded-lg shadow-md" alt="image" />
+                <!-- <div class="flex justify-around w-full">
+                    <img src="./Assets/Blue Shape.svg" class="w-10" alt="img1" />
+                    <img src="./Assets/Checkmark.svg" class="w-10" alt="img2" />
+                    <img src="./Assets/Help Avatar.svg" class="w-10" alt="img3" />
+                </div> -->
+            </div>
+            <!-- Details Section -->
+            <div class="flex flex-col justify-between bg-red-400 w-full md:w-1/2 p-6">
+                <div>
+                    <h1 class="text-2xl font-bold mb-2"><%= product.name %></h1>
+                    <div class="flex items-center gap-2 mb-2">
+                        <div class="flex gap-1 text-yellow-400">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div>5.0 out of (1256) Reviews</div>
+                    </div>
+                    <div class="mb-2">
+                        <h2 class="text-xl font-semibold">Rs <%= product.price %></h2>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-medium mb-1">Description</h3>
+                        <p class="text-sm"><%= product.description %></p>
+                    </div>
+                </div>
+                <div class="flex gap-6 text-2xl justify-center mt-4">
+                    <div>
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
