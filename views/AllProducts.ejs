@@ -16,7 +16,9 @@
                 <% products.forEach(function(product) { %>
                     <div class="min-w-72 max-w-72 p-4 bg-zinc-800 roundAed-lg">
                         <div class="w-full h-52 rounded-lg bg-zinc-500">
-                            <img src="<%= product.images %>" class="w-full h-full object-cover" alt="">
+                            <a href="/product/<%= product._id%>">
+                                <img src="<%= product.images %>" class="w-full h-full object-cover" alt="">
+                            </a>
                         </div>
                         <h3 class="text-xl mt-3"><%= product.name %></h3> 
                         <!-- <h3 class="text-xl mt-3">Hardcoaded</h3>  -->
