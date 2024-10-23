@@ -7,6 +7,7 @@ const path = require('path');
 require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const {fetchProducts} = require('./middleware/productMiddleware')
+const swaggerDocs = require ('./utils/swagger')
 
 //testiing git
 const app = express();
@@ -42,6 +43,8 @@ mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         app.listen(process.env.PORT, () => {
             console.log("Listening on localhost:" + process.env.PORT);
+
+            swaggerDocs(app, port);
         });
     })
     .catch((err) => {
