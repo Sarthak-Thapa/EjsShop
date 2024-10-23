@@ -27,6 +27,18 @@ const myProducts = async (req, res) => {
     }
 }
 
+//To get user Products
+const getUserProducts = async (req, res) => {
+    const { userId } = req.params;
+    try {
+        const user = await User.findById(userId);
+        const products = await Product.find({ uploadedUser: userId });
+        res.render('usersProduct', { user, products });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 
 
 
@@ -42,23 +54,36 @@ const getProducts = async (req, res) => {
 };
 
 
-
-
-
-//get a single product
-const getProduct = async(req, res) =>{
-    const {id} = req.params;
-
-    const product = await Product.findById(id)
-    // res.status(200).json(product)
-    res.render('productDetails',{product})
-}
-
+// Get a single product by ID
+const getProduct = async (req, res) => {
+    const { id } = req.params;
+  
+    // Validate ObjectId
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ error: 'Invalid product ID' });
+    }
+  
+    try {
+      const product = await Product.findById(id);
+      if (!product) {
+        return res.status(404).json({ error: 'Product not found' });
+      }
+      res.render('productDetails',{product})
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  };
 //create a new product
-const createProduct = async(req, res) => {
+const createProduct = async (req, res) => {
     try {
         const user = await User.findOne({ email: req.user.email });
         const { name, description, images, price } = req.body;
+        
+        // Use logical AND (&&) instead of bitwise AND (&)
+        if (!(name && description && images && price)) {
+            return res.send("Please fill all the required fields");
+        }
+        
         const product = await Product.create({
             name, 
             description, 
@@ -66,9 +91,7 @@ const createProduct = async(req, res) => {
             price,
             uploadedUser: user._id
         });
-        // res.status(200).json(product)
-        // console.log(product)
-        console.log('Created product:', product); // Debug statement
+        
         res.redirect('/');
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -109,7 +132,8 @@ const deleteProduct = async(req, res) => {
 const updateProduct = async(req, res) => {
     const {id} = req.params
     const product = await Product.findByIdAndUpdate(id, req.body, {new:true})
-    res.status(200).json(product)
+    // res.status(200).json(product)
+    res.redirect('/product/myproducts')
     // console.log(product)
 }
 
@@ -117,6 +141,7 @@ module.exports = {
     productForm,
     editProduct,
     myProducts,
+    getUserProducts,
     getProducts,
     getProduct,
     createProduct,

@@ -2,6 +2,8 @@ const User = require('../models/userModel');
 const bcrypt = require('bcryptjs');
 // const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
+const upload = require('../config/multerConfig');
+const { route } = require('../routes/productRoutes');
 
 
 // get signup page
@@ -14,6 +16,8 @@ const signUp = (req, res) =>{
 const loginPage = (req, res) => {
   res.render('login')
 }
+
+//Upload user image
 
 
 // Get all users
@@ -64,6 +68,7 @@ const createUser = async(req, res) =>{
           // let token = jwt.sign({email}, 'secret')
           // res.cookie("token", token)
           // res.redirect('login')
+
       });
   });
       
@@ -141,11 +146,28 @@ const updateUser = async (req, res) => {
 };
 
 const profile = async (req, res) => {
-  let user = await User.findOne({email: req.user.email})
-  console.log(user._id);
-  // res.json({ mssg: "You are logged in", user: req.user });
-  res.render('profile', {user})
-}
+  try {
+    // Ensure req.user is populated correctly
+    if (!req.user || !req.user.email) {
+      return res.status(400).json({ error: "User information not found" });
+    }
+
+    // console.log(req.file);
+
+    let user = await User.findOne({ email: req.user.email });
+
+    // Handle case where the user is not found
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    console.log(user._id);
+    res.render('profile', { user });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 
 module.exports = {
   signUp,
