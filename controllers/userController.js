@@ -64,10 +64,6 @@ const createUser = async(req, res) =>{
           let token = jwt.sign({email, userid: user._id}, 'secret')
           res.cookie("token", token)
           res.status(201).json(user);
-  
-          // let token = jwt.sign({email}, 'secret')
-          // res.cookie("token", token)
-          // res.redirect('login')
 
       });
   });

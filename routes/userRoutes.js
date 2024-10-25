@@ -17,8 +17,9 @@ const islogged = require('../middleware/loggedIn')
 
 const router = express.Router();
 
-//get signup page
-router.get('/signup', signUp)
+
+// router.get('/signup', signUp)
+
 
 //get login page
 router.get('/login', loginPage)

@@ -46,8 +46,8 @@ const getUserProducts = async (req, res) => {
 const getProducts = async (req, res) => {
     try {
         const products = await Product.find();
-        // res.json(products)
-        res.render("AllProducts", { products });
+        res.json(products)
+        // res.render("AllProducts", { products });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -68,7 +68,8 @@ const getProduct = async (req, res) => {
       if (!product) {
         return res.status(404).json({ error: 'Product not found' });
       }
-      res.render('productDetails',{product})
+      res.json(product)
+    //   res.render('productDetails',{product})
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -92,7 +93,8 @@ const createProduct = async (req, res) => {
             uploadedUser: user._id
         });
         
-        res.redirect('/');
+        // res.redirect('/');
+        res.json(product)
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
